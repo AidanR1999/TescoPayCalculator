@@ -4,10 +4,7 @@ const _premiumRate = 1.25;
 //MAIN CONTROLLER
 function calcPayControl() {
     var values = getValues();
-
-    if(!checkValues(values)) {
-        return null;
-    }
+    console.log(values);
 
     var weeklyPreTax = calcWeeklyPay(values);
     // var weeklyPostTax = calcTax(weeklyPreTax, values.bracket);
@@ -16,6 +13,7 @@ function calcPayControl() {
     // var monthlyPostTax = calcTax(monthlyPreTax, values.bracket);
 
     var annualPreTax = calcAnnualPay(values);
+    console.log(weeklyPreTax, monthlyPreTax, annualPreTax);
     // var annualPostTax = calcTax(annualPreTax, values.bracket);
 
     // displayPreTax(weeklyPreTax, monthlyPreTax, annualPreTax);
@@ -24,7 +22,9 @@ function calcPayControl() {
 
 //PRE-TAX CALCULATIONS
 function calcWeeklyPay(values) {
-    var pay = values.hourlyPay * values.weeklyStandHours;
+    console.log(values);
+    var pay = values.hourlyPay * 7;
+    console.log(pay);
     pay += (values.hourlyPay * _premiumRate) * values.weeklyPremHours;
     return pay;
 }
@@ -44,17 +44,17 @@ function calcTax(preTax, bracket){}
 function getValues() {
     var values = {};
     $(document).ready(function() {
-        values.hourlyPay = $('#hourlyPay').val();
+        values.hourlyPay = Number($('#hourlyPay').val());
         values.taxBracket = $('#taxBracket').val();
 
-        values.weeklyStandHours = $('#weeklyStandHours').val();
-        values.weeklyPremHours = $('#weeklyPremHours').val();
+        values.weeklyStandHours = Number($('#weeklyStandHours').val());
+        values.weeklyPremHours = Number($('#weeklyPremHours').val());
     });
 
     return values;
 }
 
-function checkValues() {
+function checkValues(values) {
     if(isNaN(values.hourlyPay)) {
         return false
     }
