@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="scripts/calculator.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -54,6 +55,30 @@
         <div class="row">
             <p class="col-sm-4"></p>
             <button type="button" class="btn btn-primary col-sm-3" onclick="calcPayControl()">Calculate Pay</button>
+        </div>
+    </section>
+    <section>
+        <!-- basic bootstrap table snippet -->
+        <div class="row table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Week £</th>
+                    <th scope="col">Month £</th>
+                    <th scope="col">Annual £</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td id="week"></td>
+                    <td id="month"></td>
+                    <td id="year"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- table end -->
         </div>
     </section>
 </body>
