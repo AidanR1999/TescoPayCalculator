@@ -38,7 +38,21 @@ function calcAnnualPay(values);
 function calcTax(preTax, bracket);
 
 //HELPERS
-function getValues();
+function getValues() {
+    var values = {};
+    $(document).ready(function() {
+        values.hourlyPay = $('#hourlyPay').val();
+        values.taxBracket = $('#taxBracket').val();
+
+        values.weeklyStandHours = $('#weeklyStandHours').val();
+        values.weeklyPremHours = $('#weeklyPremHours').val();
+
+        values.overStandHours = $('#overStandHours').val();
+        values.overPremHours = $('#overPremHours').val();
+    });
+
+    return values;
+}
 
 //DISPLAY
 function displayPreTax(preTax);
