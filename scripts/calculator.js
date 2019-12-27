@@ -14,6 +14,13 @@ function calcPayControl() {
 
     var annualPreTax = calcAnnualPay(values);
     console.log(weeklyPreTax, monthlyPreTax, annualPreTax);
+
+    // display in table cells by ID
+    $('#week').html( '£ ' + weeklyPreTax.toFixed(2));
+    $('#month').html('£ ' + monthlyPreTax.toFixed(2));
+    $('#year').html('£ ' + annualPreTax.toFixed(2));
+
+
     // var annualPostTax = calcTax(annualPreTax, values.bracket);
 
     // displayPreTax(weeklyPreTax, monthlyPreTax, annualPreTax);
@@ -22,10 +29,11 @@ function calcPayControl() {
 
 //PRE-TAX CALCULATIONS
 function calcWeeklyPay(values) {
+    debugger;
     console.log(values);
-    var pay = values.hourlyPay * 7;
+    var pay = values.hourlyPay * values.weeklyStandHours; // not sure what the value "7" was for? 
     console.log(pay);
-    pay += (values.hourlyPay * _premiumRate) * values.weeklyPremHours;
+    pay += (values.hourlyPay * _premiumRate) * values.weeklyPremHours; 
     return pay;
 }
 
@@ -43,13 +51,11 @@ function calcTax(preTax, bracket){}
 //HELPERS
 function getValues() {
     var values = {};
-    $(document).ready(function() {
         values.hourlyPay = Number($('#hourlyPay').val());
         values.taxBracket = $('#taxBracket').val();
 
         values.weeklyStandHours = Number($('#weeklyStandHours').val());
         values.weeklyPremHours = Number($('#weeklyPremHours').val());
-    });
 
     return values;
 }
