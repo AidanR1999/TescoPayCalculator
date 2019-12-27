@@ -1,41 +1,33 @@
-//MAIN CONTROLLERS
-function calcWeeklyPayControl() {
+//MAIN CONTROLLER
+function calcPayControl() {
     var values = getValues();
 
-    var preTax = calcWeeklyPay(values);
-    var postTax = calcTax(preTax, values.bracket);
+    if(!checkValues(values)) {
+        return null;
+    }
 
-    displayPreTax(preTax);
-    displayPostTax(postTax);
-}
+    // var weeklyPreTax = calcWeeklyPay(values);
+    // var weeklyPostTax = calcTax(weeklyPreTax, values.bracket);
 
-function calcMonthlyPayControl() {
-    var values = getValues();
+    // var monthlyPreTax = calcMonthlyPay(values);
+    // var monthlyPostTax = calcTax(monthlyPreTax, values.bracket);
 
-    var preTax = calcMonthlyPay(values);
-    var postTax = calcTax(preTax, values.bracket);
+    // var annualPreTax = calcAnnualPay(values);
+    // var annualPostTax = calcTax(annualPreTax, values.bracket);
 
-    displayPreTax(preTax);
-    displayPostTax(postTax);
-}
-
-function calcAnnualPayControl() {
-    var values = getValues();
-
-    var preTax = calcAnnualPay(values);
-    var postTax = calcTax(preTax, values.bracket);
-
-    displayPreTax(preTax);
-    displayPostTax(postTax);
+    // displayPreTax(weeklyPreTax, monthlyPreTax, annualPreTax);
+    // displayPostTax(weeklyPostTax, monthlyPostTax, annualPostTax);
 }
 
 //PRE-TAX CALCULATIONS
-function calcWeeklyPay(values);
-function calcMonthlyPay(values);
-function calcAnnualPay(values);
+function calcWeeklyPay(values) {
+    
+}
+function calcMonthlyPay(values){}
+function calcAnnualPay(values){}
 
 //TAX CALCULATIONS
-function calcTax(preTax, bracket);
+function calcTax(preTax, bracket){}
 
 //HELPERS
 function getValues() {
@@ -46,14 +38,24 @@ function getValues() {
 
         values.weeklyStandHours = $('#weeklyStandHours').val();
         values.weeklyPremHours = $('#weeklyPremHours').val();
-
-        values.overStandHours = $('#overStandHours').val();
-        values.overPremHours = $('#overPremHours').val();
     });
 
     return values;
 }
 
+function checkValues() {
+    if(isNaN(values.hourlyPay)) {
+        return false
+    }
+    if(isNaN(values.weeklyStandHours)) {
+        return false
+    }
+    if(isNaN(values.weeklyPremHours)) {
+        return false
+    }
+    return true;
+}
+
 //DISPLAY
-function displayPreTax(preTax);
-function displayPostTax(postTax);
+function displayPreTax(preTax){}
+function displayPostTax(postTax){}
