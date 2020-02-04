@@ -28,20 +28,21 @@
 
     <section id="calculator" class="container">
         <div class="row">
-            <p class="col-sm-2"></p>
+            <p class="col-sm-1"></p>
             <input type="text" class="form-control col-sm-2" id="hourlyPay" placeholder="Hourly Pay">
             <p class="text-primary col-sm-2">Example base pay: 9.50</p>
 
 
             <p class="text col-sm-2">Tax Bracket:</p>
-            <select id="taxBracket" name="Tax Bracket" class="custom-select col-sm-1">
-                    <option selected value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
+            <select id="taxBracket" name="Tax Bracket" class="custom-select col-sm-2">
+                    <option selected value="A">Personal Allowance</option>
+                    <option value="B">Starter rate</option>
+                    <option value="C">Basic rate</option>
+                    <option value="D">Intermediate rate</option>
+                    <option value="E">Higher rate</option>
+                    <option value="F">Top rate</option>
             </select>
-
-            <p class="col-sm-2"></p>
+            <a class="col-sm-2" target="_blank" rel="noopener noreferrer" href="https://www.gov.uk/scottish-income-tax">not sure?</a>
 
         </div>
         <br>
@@ -64,17 +65,23 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Week £</th>
-                    <th scope="col">Month £</th>
-                    <th scope="col">Annual £</th>
+                    <th scope="col">Week</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Annual</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">1</th>
-                    <td id="week"></td>
-                    <td id="month"></td>
-                    <td id="year"></td>
+                    <th id="preType"></th>
+                    <td id="preWeek"></td>
+                    <td id="preMonth"></td>
+                    <td id="preYear"></td>
+                  </tr>
+                  <tr>
+                    <th id="postType"></th>
+                    <td id="postWeek"></td>
+                    <td id="postMonth"></td>
+                    <td id="postYear"></td>
                   </tr>
                 </tbody>
               </table>

@@ -3,50 +3,76 @@ const _premiumRate = 1.25;
 
 //MAIN CONTROLLER
 function calcPayControl() {
+    //get data from form
     var values = getValues();
-    console.log(values);
 
+    //calculate values
     var weeklyPreTax = calcWeeklyPay(values);
-    // var weeklyPostTax = calcTax(weeklyPreTax, values.bracket);
+    var weeklyPostTax = calcTax(weeklyPreTax, values.taxBracket);
 
     var monthlyPreTax = calcMonthlyPay(values);
-    // var monthlyPostTax = calcTax(monthlyPreTax, values.bracket);
+    var monthlyPostTax = calcTax(monthlyPreTax, values.taxBracket);
 
     var annualPreTax = calcAnnualPay(values);
-    console.log(weeklyPreTax, monthlyPreTax, annualPreTax);
+    var annualPostTax = calcTax(annualPreTax, values.taxBracket)
+    console.log(annualPreTax);
 
     // display in table cells by ID
-    $('#week').html( '£ ' + weeklyPreTax.toFixed(2));
-    $('#month').html('£ ' + monthlyPreTax.toFixed(2));
-    $('#year').html('£ ' + annualPreTax.toFixed(2));
+    $('#preType').html('Before tax');
+    $('#preWeek').html( '£ ' + weeklyPreTax.toFixed(2));
+    $('#preMonth').html('£ ' + monthlyPreTax.toFixed(2));
+    $('#preYear').html('£ ' + annualPreTax.toFixed(2));
 
-
-    // var annualPostTax = calcTax(annualPreTax, values.bracket);
-
-    // displayPreTax(weeklyPreTax, monthlyPreTax, annualPreTax);
-    // displayPostTax(weeklyPostTax, monthlyPostTax, annualPostTax);
+    $('#postType').html('After tax');
+    $('#postWeek').html( '£ ' + weeklyPostTax.toFixed(2));
+    $('#postMonth').html('£ ' + monthlyPostTax.toFixed(2));
+    $('#postYear').html('£ ' + annualPostTax.toFixed(2));
 }
 
 //PRE-TAX CALCULATIONS
 function calcWeeklyPay(values) {
-    debugger;
-    console.log(values);
-    var pay = values.hourlyPay * values.weeklyStandHours; // not sure what the value "7" was for? 
-    console.log(pay);
+    //get standard pay
+    var pay = values.hourlyPay * values.weeklyStandHours;
+
+    //add premium pay
     pay += (values.hourlyPay * _premiumRate) * values.weeklyPremHours; 
+
     return pay;
 }
 
 function calcMonthlyPay(values){
+    //pay is every 4 weeks
     return calcWeeklyPay(values) * 4;
 }
 
 function calcAnnualPay(values){
+    //annual is 52 weeks, 13 payments
     return calcWeeklyPay(values) * 52;
 }
 
 //TAX CALCULATIONS
-function calcTax(preTax, bracket){}
+function calcTax(preTax, bracket){
+    var postTax = preTax;
+    switch(bracket){
+        case "B":
+            postTax = preTax * 0.81;
+            break;
+        case "C":
+            postTax = preTax * 0.80;
+            break;
+        case "D":
+            postTax = preTax * 0.79;
+            break;
+        case "E":
+            postTax = preTax * 0.59;
+            break;
+        case "F":
+            postTax = preTax * 0.54;
+            break;
+    }
+
+    return postTax;
+}
 
 //HELPERS
 function getValues() {
@@ -72,7 +98,3 @@ function checkValues(values) {
     }
     return true;
 }
-
-//DISPLAY
-function displayPreTax(preTax){}
-function displayPostTax(postTax){}
