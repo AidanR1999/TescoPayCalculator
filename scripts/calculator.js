@@ -19,14 +19,14 @@ function calcPayControl() {
 
     // display in table cells by ID
     $('#preType').html('Before tax');
-    $('#preWeek').html( '£ ' + weeklyPreTax.toFixed(2));
-    $('#preMonth').html('£ ' + monthlyPreTax.toFixed(2));
-    $('#preYear').html('£ ' + annualPreTax.toFixed(2));
+    $('#preWeek').html(weeklyPreTax.toFixed(2));
+    $('#preMonth').html(monthlyPreTax.toFixed(2));
+    $('#preYear').html(annualPreTax.toFixed(2));
 
     $('#postType').html('After tax');
-    $('#postWeek').html( '£ ' + weeklyPostTax.toFixed(2));
-    $('#postMonth').html('£ ' + monthlyPostTax.toFixed(2));
-    $('#postYear').html('£ ' + annualPostTax.toFixed(2));
+    $('#postWeek').html(weeklyPostTax.toFixed(2));
+    $('#postMonth').html(monthlyPostTax.toFixed(2));
+    $('#postYear').html(annualPostTax.toFixed(2));
 }
 
 //PRE-TAX CALCULATIONS
